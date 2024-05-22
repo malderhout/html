@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DevOpsWorks Main Page</title>
+<style>
+:root {
+    --primary-color: #302AE6;
+    --secondary-color: #536390;
+    --font-color: #424242;
+    --bg-color: #fff;
+    --heading-color: #292922;
+}
+
+[data-theme="dark"] {
+    --primary-color: #9A97F3;
+    --secondary-color: #818cab;
+    --font-color: #e1e1ff;
+    --bg-color: #161625;
+    --heading-color: #818cab;
+}
+
+body {
+  font-family: "Arial", sans-serif;
+  background-color: var(--bg-color);
+  color: var(--font-color);
+  margin: 0;
+  font-size: calc(1rem + 0.25vh);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+h1 {
+    color: var(--heading-color);
+    font-family: "Arial", sans-serif;
+    font-size: 2rem;
+    margin-bottom: 1vh;
+}
+
+p {
+  font-size: 1.1rem;
+  line-height: 1.6rem;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:hover, a:focus {
+  border-bottom: 3px solid currentColor;
+}
+
+section {
+  max-width: 38%;
+  margin: 0 auto;
+}
+
+.top-left {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.top-right {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.post-meta {
+  font-size: 1rem;
+  font-style: italic;
+  display: block;
+  margin-bottom: 4vh;
+  color: var(--secondary-color);
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 0;
+  gap: 10px;
+}
+
+.nav-link {
+    color: var(--font-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.nav-link:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.nav-link:focus {
+    outline: none;
+}
+
+.nav-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.nav-tab {
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    border-bottom: none;
+}
+
+.nav-tab:hover {
+    background-color: #444;
+    border-bottom: none;
+}
+
+.nav-tab-selected {
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: underline;
+    transition: background-color 0.3s ease;
+    border-bottom: none;
+}
+
+.nav-tab-selected:hover {
+    background-color: #444;
+    border-bottom: none;
+}
+
+.theme-switch-wrapper {
+  display:flex;
+  align-items: center;
+  margin-left: 17px;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+.theme-switch {
+  display: inline-block;
+  height: 34px;
+  position: relative;
+  width: 60px;
+  
+}
+
+.theme-switch input {
+  display:none;
+}
+
+.slider {
+  background-color: #ccc;
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: .4s;
+}
+
+.slider:before {
+  background-color: #fff;
+  bottom: 4px;
+  content: "";
+  height: 26px;
+  left: 4px;
+  position: absolute;
+  transition: .4s;
+  width: 26px;
+}
+
+input:checked + .slider {
+  background-color: #66bb6a;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.imagecontainer {
+    border-radius: 15px;
+    max-height: 100px;
+    max-width: 100px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.bridgeimagecontainer {
+    border-radius: 15px;
+    max-width: 900px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 0 auto;
+}
+
+.brideimage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.reasons-list {
+  margin-top: 20px;
+  list-style: none;
+  padding-left: 0;
+}
+
+.reasons-list li {
+  margin-bottom: 10px;
+  padding: 15px 15px 15px 60px;
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
+  position: relative;
+}
+
+.reasons-list li p {
+  margin: 0;
+}
+
+.reasons-list li .checkmark {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 20px;
+  width: 30px;
+  height: auto;
+}
+
+.contact-tab {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.contact-tab:hover {
+  background-color: #444;
+}
+
+.footer {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 1px 0;
+  text-align: center;
+  margin-top: auto;
+  width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    font-size: 16px;
+  }
+
+  section {
+    max-width: 90%;
+  }
+
+  .nav-tabs {
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+
+  .nav-tab {
+    margin-bottom: 10px;
+  }
+
+  .reasons-list li {
+    padding: 15px;
+    position: relative;
+    width: calc(100% - 30px);
+    margin-bottom: 20px;
+  }
+
+  .reasons-list li .checkmark {
+    display: none;
+  }
+
+  .reasons-list li p {
+    margin: 0;
+    line-height: 1.4;
+  }
+}
+
+</style>
+</head>
+<body>
+    <section>
+        <div class="nav-tabs">
+          
+          <div class="imagecontainer">
+            <img class="image" src="../logo1.png" alt="logo1">
+
+        </div>
+          <h1>DevOps Works Consultancy</h1>
+          <article class="post">
+            <div class="theme-switch-wrapper">
+                <label class="theme-switch" for="checkbox">
+                    <input type="checkbox" id="checkbox" />
+                    <div class="slider round"></div>
+                </label>
+                <p>Dark Mode</p>
+          </div>
+        </div>
+
+        <div class="nav-tabs">
+            <a href="../" class="nav-tab">Home</a>
+            <a href="../diensten" class="nav-tab">Diensten</a>
+            <a href="../blog" class="nav-tab-selected">Blog</a>
+            <a href="../contact" class="nav-tab">Contact</a>
+        </div>
+      
+        <ul class="reasons-list">
+          <li>
+          <p><strong>Wie zijn wij</strong></p>
+          <p>DevOps Works Consultancy is een toonaangevend bedrijf dat gespecialiseerd is in het leveren van hoogwaardige diensten op het gebied van DevOps, architectuur, cloud computing en data-gedreven werken. Onze expertise omvat het uitvoeren van pragmatische Maturity Quick Scans, waarmee organisaties inzicht krijgen in hun huidige staat en de mogelijkheden voor verbetering op het gebied van softwareontwikkeling, werken onder architectuur, cloud-implementaties en datagestuurd werken.
+
+              Door middel van pragmatische analyses en slimme aanbevelingen stellen we bedrijven in staat om hun DevOps-processen te optimaliseren, architectuur keuzes te verbeteren, de efficiëntie van cloudomgevingen te verhogen en een solide basis te leggen voor datagestuurd succes.
+              
+              Bij DevOps Works Consultancy streven we ernaar om onze klanten te helpen bij het realiseren van innovatie, flexibiliteit en concurrentievoordeel in een snel evoluerende technologische omgeving.</p>
+          </li>
+
+          <li>
+          <p><strong>Digitale Transformatie</strong></p>
+          <p>Transformeer uw bedrijf naar nieuwe hoogten met onze toonaangevende consultancy op het gebied van enterprise- en solution architectuur. Bij DevOps Works geloven we in het krachtige samenspel van cloud computing, data gedreven werken en de nieuwste methodologieën zoals DevOps, Agile en SAFe om uw organisatie te helpen excelleren in de moderne zakelijke omgeving.
+
+              Onze ervaren consultants begrijpen de complexe uitdagingen waarmee uw organisatie wordt geconfronteerd en bieden op maat gemaakte oplossingen die aansluiten op uw unieke behoeften. Met een focus op enterprise architectuur zorgen we voor een solide basis voor uw bedrijfsactiviteiten, terwijl solution architectuur de weg effent voor innovatieve oplossingen die naadloos aansluiten op uw bedrijfsdoelen.
+              
+              In de snel evoluerende wereld van technologie is cloud computing de drijvende kracht achter flexibiliteit en schaalbaarheid. Onze experts begeleiden u bij het optimaal benutten van de kracht van de cloud, waardoor uw organisatie kan profiteren van kostenefficiëntie en maximale prestaties.
+              
+              Wij geloven in de kracht van data en richten ons op data gedreven werken om uw organisatie te helpen waardevolle inzichten te verkrijgen uit uw gegevens. Onze aanpak integreert geavanceerde analytics en datamanagementpraktijken om u te helpen slimmere, strategischere beslissingen te nemen.
+              
+              Met een sterke focus op samenwerking en flexibiliteit omarmen we de principes van DevOps, Agile en SAFe. Deze methodologieën stellen uw team in staat om sneller te innoveren, de time-to-market te verkorten en beter te reageren op veranderende marktomstandigheden.
+              
+              Kies voor DevOps Works en ontdek de kracht van een geïntegreerde aanpak van enterprise architectuur, solution architectuur, cloud computing en data gedreven werken, allemaal ondersteund door de wendbaarheid van DevOps, Agile en SAFe. Samen creëren we een solide basis voor uw succes in de dynamische zakelijke wereld van vandaag.</p>
+          </li>
+
+
+      </ul>
+        </article>
+    </section>
+    <footer class="footer">
+        <p>&copy; 2024 DevOpsWorks. All rights reserved.</p>
+    </footer>
+<script>
+  const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+  const currentTheme = localStorage.getItem('theme');
+
+  if (currentTheme) {
+    document.documentElement.setAttribute('data-theme', currentTheme);
+
+    if (currentTheme === 'dark') {
+      toggleSwitch.checked = true;
+    }
+  }
+
+  function switchTheme(e) {
+    if (e.target.checked) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+      localStorage.setItem('theme', 'light');
+    }
+  }
+
+  toggleSwitch.addEventListener('change', switchTheme, false);
+</script>
+</body>
+</html>
