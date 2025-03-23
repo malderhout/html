@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevOpsWorks - Over</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        :root {
+            --primary-color: #0056b3;
+            --primary-light: #4d90fe;
+            --primary-dark: #00377a;
+            --secondary-color: #536390;
+            --accent-color: #2ed573;
+            --font-color: #333333;
+            --font-light: #666666;
+            --bg-color: #ffffff;
+            --bg-light: #f8f9fa;
+            --bg-dark: #e9ecef;
+            --heading-color: #212529;
+            --card-bg: #ffffff;
+            --card-border: rgba(0, 0, 0, 0.1);
+            --footer-bg: #0056b3;
+            --footer-color: #ffffff;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --primary-color: #4d90fe;
+                --primary-light: #73a7ff;
+                --primary-dark: #0066cc;
+                --secondary-color: #818cab;
+                --accent-color: #38ef7d;
+                --font-color: #e1e1ff;
+                --font-light: #c0c0f0;
+                --bg-color: #121212;
+                --bg-light: #1e1e1e;
+                --bg-dark: #272727;
+                --heading-color: #e1e1ff;
+                --card-bg: #1e1e1e;
+                --card-border: rgba(255, 255, 255, 0.1);
+                --footer-bg: #0d47a1;
+                --footer-color: #ffffff;
+                --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--font-color);
+            margin: 0;
+            font-size: 16px;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            transition: var(--transition);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--heading-color);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            transition: var(--transition);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            color: var(--font-color);
+            transition: var(--transition);
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        a:hover, a:focus {
+            color: var(--primary-light);
+            text-decoration: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+            color: white;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        header {
+            background-color: var(--bg-color);
+            box-shadow: var(--shadow);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+            object-fit: cover;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .logo-img:hover {
+            transform: scale(1.05);
+        }
+
+        .company-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--heading-color);
+            transition: var(--transition);
+        }
+
+        .company-name span {
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .nav-link {
+            padding: 8px 16px;
+            border-radius: 4px;
+            color: var(--font-color);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-link.active {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 16px;
+            right: 16px;
+            height: 3px;
+            background-color: var(--primary-color);
+            border-radius: 1.5px;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--font-color);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .mobile-menu-btn:hover {
+            color: var(--primary-color);
+        }
+
+        .page-header {
+            background-color: var(--bg-light);
+            padding: 60px 0;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .page-header h1 {
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .page-header h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: var(--font-light);
+        }
+
+        .breadcrumb a {
+            color: var(--primary-color);
+        }
+
+        .breadcrumb-divider {
+            color: var(--font-light);
+        }
+
+        .main-content {
+            padding: 60px 0;
+            flex: 1;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        .Over-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .Over-article {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid var(--card-border);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .Over-article:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .Over-img-container {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .Over-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .Over-article:hover .Over-img {
+            transform: scale(1.05);
+        }
+
+        .Over-content {
+            padding: 25px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .Over-category {
+            display: inline-block;
+            background-color: rgba(77, 144, 254, 0.1);
+            color: var(--primary-color);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .Over-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            transition: var(--transition);
+        }
+
+        .Over-article:hover .Over-title {
+            color: var(--primary-color);
+        }
+
+        .Over-excerpt {
+            color: var(--font-light);
+            margin-bottom: 20px;
+            flex: 1;
+        }
+
+        .Over-meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--font-light);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--card-border);
+            padding-top: 15px;
+        }
+
+        .Over-date, .Over-author {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .featured-post {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid var(--card-border);
+            margin-bottom: 60px;
+        }
+
+        .featured-post:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .featured-content {
+            padding: 30px;
+        }
+
+        .featured-tag {
+            display: inline-block;
+            background-color: rgba(77, 144, 254, 0.1);
+            color: var(--primary-color);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .featured-title {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            transition: var(--transition);
+        }
+
+        .featured-post:hover .featured-title {
+            color: var(--primary-color);
+        }
+
+        .featured-excerpt {
+            color: var(--font-light);
+            margin-bottom: 20px;
+        }
+
+        .featured-meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--font-light);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--card-border);
+            padding-top: 15px;
+        }
+
+        .Over-detail {
+            padding: 30px;
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--card-border);
+            margin-bottom: 40px;
+        }
+
+        .Over-detail h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .Over-detail p {
+            margin-bottom: 1.5rem;
+        }
+
+        footer {
+            background-color: var(--footer-bg);
+            color: var(--footer-color);
+            padding: 20px 0;
+            margin-top: auto;
+            transition: var(--transition);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-copyright {
+            font-size: 0.9rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .fade-in, .fade-in-up {
+            transition: opacity 0.6s ease-out;
+        }
+
+        @media screen and (max-width: 992px) {
+            .Over-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                flex-direction: column;
+                background-color: var(--bg-color);
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                padding: 20px 0;
+                gap: 0;
+                z-index: 100;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-link {
+                width: 100%;
+                text-align: center;
+                padding: 15px 0;
+                border-radius: 0;
+            }
+
+            .nav-link.active::after {
+                display: none;
+            }
+
+            .nav-link.active {
+                background-color: var(--primary-light);
+                color: white;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+
+            .Over-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media screen and (max-width: 576px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .featured-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo-container">
+                <img src="logo1.png" alt="DevOpsWorks Logo" class="logo-img">
+                <a href="index.html" class="company-name">DevOps<span>Works</span></a>
+            </div>
+            <button class="mobile-menu-btn" id="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav class="nav-links" id="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="diensten.html" class="nav-link">Diensten</a>
+                <a href="Over.html" class="nav-link active">Over</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Over</h1>
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span class="breadcrumb-divider">/</span>
+                <span>Over</span>
+            </div>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="Over-detail fade-in-up">
+                <h2>Wie zijn wij</h2>
+                <p>DevOps Works Consultancy is een toonaangevend bedrijf dat gespecialiseerd is in het leveren van hoogwaardige diensten op het gebied van DevOps, architectuur, cloud computing en data-gedreven werken. Onze expertise omvat het uitvoeren van pragmatische Maturity Quick Scans, waarmee organisaties inzicht krijgen in hun huidige staat en de mogelijkheden voor verbetering op het gebied van softwareontwikkeling, werken onder architectuur, cloud-implementaties en datagestuurd werken.</p>
+                <p>Door middel van pragmatische analyses en slimme aanbevelingen stellen we bedrijven in staat om hun DevOps-processen te optimaliseren, architectuur keuzes te verbeteren, de efficiëntie van cloudomgevingen te verhogen en een solide basis te leggen voor datagestuurd succes.</p>
+                <p>Bij DevOps Works Consultancy streven we ernaar om onze klanten te helpen bij het realiseren van innovatie, flexibiliteit en concurrentievoordeel in een snel evoluerende technologische omgeving.</p>
+            </div>
+
+            <div class="Over-detail fade-in-up" style="animation-delay: 0.2s;">
+                <h2>Digitale Transformatie</h2>
+                <p>Transformeer uw bedrijf naar nieuwe hoogten met onze toonaangevende consultancy op het gebied van enterprise- en solution architectuur. Bij DevOps Works geloven we in het krachtige samenspel van cloud computing, data gedreven werken en de nieuwste methodologieën zoals DevOps, Agile en SAFe om uw organisatie te helpen excelleren in de moderne zakelijke omgeving.</p>
+                <p>Onze ervaren consultants begrijpen de complexe uitdagingen waarmee uw organisatie wordt geconfronteerd en bieden op maat gemaakte oplossingen die aansluiten op uw unieke behoeften. Met een focus op enterprise architectuur zorgen we voor een solide basis voor uw bedrijfsactiviteiten, terwijl solution architectuur de weg effent voor innovatieve oplossingen die naadloos aansluiten op uw bedrijfsdoelen.</p>
+                <p>In de snel evoluerende wereld van technologie is cloud computing de drijvende kracht achter flexibiliteit en schaalbaarheid. Onze experts begeleiden u bij het optimaal benutten van de kracht van de cloud, waardoor uw organisatie kan profiteren van kostenefficiëntie en maximale prestaties.</p>
+                <p>Wij geloven in de kracht van data en richten ons op data gedreven werken om uw organisatie te helpen waardevolle inzichten te verkrijgen uit uw gegevens. Onze aanpak integreert geavanceerde analytics en datamanagementpraktijken om u te helpen slimmere, strategischere beslissingen te nemen.</p>
+                <p>Met een sterke focus op samenwerking en flexibiliteit omarmen we de principes van DevOps, Agile en SAFe. Deze methodologieën stellen uw team in staat om sneller te innoveren, de time-to-market te verkorten en beter te reageren op veranderende marktomstandigheden.</p>
+                <p>Kies voor DevOps Works en ontdek de kracht van een geïntegreerde aanpak van enterprise architectuur, solution architectuur, cloud computing en data gedreven werken, allemaal ondersteund door de wendbaarheid van DevOps, Agile en SAFe. Samen creëren we een solide basis voor uw succes in de dynamische zakelijke wereld van vandaag.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-copyright">
+                &copy; 2025 DevOpsWorks. All rights reserved.
+            </div>
+            <div class="social-links">
+                <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const navLinks = document.getElementById('nav-links');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedElements = document.querySelectorAll('.fade-in, .fade-in-up');
+            
+            animatedElements.forEach(element => {
+                element.style.opacity = '0';
+            });
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        
+                        if (entry.target.classList.contains('fade-in')) {
+                            entry.target.classList.add('animate__animated', 'animate__fadeIn');
+                        } else if (entry.target.classList.contains('fade-in-up')) {
+                            entry.target.classList.add('animate__animated', 'animate__fadeInUp');
+                        }
+                        
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            animatedElements.forEach(element => {
+                observer.observe(element);
+            });
+            
+            const OverCards = document.querySelectorAll('.Over-grid .Over-article');
+            if (OverCards.length > 1) {
+                OverCards[1].style.animationDelay = '0.2s';
+            }
+            if (OverCards.length > 2) {
+                OverCards[2].style.animationDelay = '0.4s';
+            }
+        });
+    </script>
+</body>
+</html>

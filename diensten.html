@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevOpsWorks - Diensten</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        :root {
+            --primary-color: #0056b3;
+            --primary-light: #4d90fe;
+            --primary-dark: #00377a;
+            --secondary-color: #536390;
+            --accent-color: #2ed573;
+            --font-color: #333333;
+            --font-light: #666666;
+            --bg-color: #ffffff;
+            --bg-light: #f8f9fa;
+            --bg-dark: #e9ecef;
+            --heading-color: #212529;
+            --card-bg: #ffffff;
+            --card-border: rgba(0, 0, 0, 0.1);
+            --footer-bg: #0056b3;
+            --footer-color: #ffffff;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --primary-color: #4d90fe;
+                --primary-light: #73a7ff;
+                --primary-dark: #0066cc;
+                --secondary-color: #818cab;
+                --accent-color: #38ef7d;
+                --font-color: #e1e1ff;
+                --font-light: #c0c0f0;
+                --bg-color: #121212;
+                --bg-light: #1e1e1e;
+                --bg-dark: #272727;
+                --heading-color: #e1e1ff;
+                --card-bg: #1e1e1e;
+                --card-border: rgba(255, 255, 255, 0.1);
+                --footer-bg: #0d47a1;
+                --footer-color: #ffffff;
+                --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--font-color);
+            margin: 0;
+            font-size: 16px;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            transition: var(--transition);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--heading-color);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            transition: var(--transition);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            color: var(--font-color);
+            transition: var(--transition);
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        a:hover, a:focus {
+            color: var(--primary-light);
+            text-decoration: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+            color: white;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        header {
+            background-color: var(--bg-color);
+            box-shadow: var(--shadow);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+            object-fit: cover;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .logo-img:hover {
+            transform: scale(1.05);
+        }
+
+        .company-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--heading-color);
+            transition: var(--transition);
+        }
+
+        .company-name span {
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .nav-link {
+            padding: 8px 16px;
+            border-radius: 4px;
+            color: var(--font-color);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-link.active {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 16px;
+            right: 16px;
+            height: 3px;
+            background-color: var(--primary-color);
+            border-radius: 1.5px;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--font-color);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .mobile-menu-btn:hover {
+            color: var(--primary-color);
+        }
+
+        .page-header {
+            background-color: var(--bg-light);
+            padding: 60px 0;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .page-header h1 {
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .page-header h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: var(--font-light);
+        }
+
+        .breadcrumb a {
+            color: var(--primary-color);
+        }
+
+        .breadcrumb-divider {
+            color: var(--font-light);
+        }
+
+        .main-content {
+            padding: 60px 0;
+            flex: 1;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        .service-box {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid var(--card-border);
+            margin-bottom: 30px;
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
+        }
+
+        .service-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-icon-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            background-color: rgba(77, 144, 254, 0.1);
+            transition: var(--transition);
+            min-width: 100px;
+        }
+
+        .service-box:hover .service-icon-container {
+            background-color: var(--primary-color);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .service-box:hover .service-icon {
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .service-content {
+            padding: 30px;
+            flex: 1;
+        }
+
+        .service-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .service-title h3 {
+            margin-bottom: 0;
+        }
+
+        .service-title .checkmark {
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            background-color: rgba(46, 213, 115, 0.1);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(46, 213, 115, 0.2);
+            transition: var(--transition);
+        }
+
+        .service-box:hover .service-title .checkmark {
+            background-color: var(--accent-color);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .fade-in, .fade-in-up {
+            transition: opacity 0.6s ease-out;
+        }
+
+        footer {
+            background-color: var(--footer-bg);
+            color: var(--footer-color);
+            padding: 20px 0;
+            margin-top: auto;
+            transition: var(--transition);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-copyright {
+            font-size: 0.9rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+
+        @media screen and (max-width: 992px) {
+            .service-box {
+                flex-direction: column;
+            }
+
+            .service-icon-container {
+                padding: 20px;
+                min-width: auto;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                flex-direction: column;
+                background-color: var(--bg-color);
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                padding: 20px 0;
+                gap: 0;
+                z-index: 100;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-link {
+                width: 100%;
+                text-align: center;
+                padding: 15px 0;
+                border-radius: 0;
+            }
+
+            .nav-link.active::after {
+                display: none;
+            }
+
+            .nav-link.active {
+                background-color: var(--primary-light);
+                color: white;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+        }
+
+        @media screen and (max-width: 576px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo-container">
+                <img src="logo1.png" alt="DevOpsWorks Logo" class="logo-img">
+                <a href="index.html" class="company-name">DevOps<span>Works</span></a>
+            </div>
+            <button class="mobile-menu-btn" id="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav class="nav-links" id="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="diensten.html" class="nav-link active">Diensten</a>
+                <a href="Over.html" class="nav-link">Over</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Onze Diensten</h1>
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span class="breadcrumb-divider">/</span>
+                <span>Diensten</span>
+            </div>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="service-box fade-in-up">
+                <div class="service-icon-container">
+                    <i class="fas fa-layer-group service-icon"></i>
+                </div>
+                <div class="service-content">
+                    <div class="service-title">
+                        <i class="fas fa-check-circle checkmark"></i>
+                        <h3>Werken met architectuur</h3>
+                    </div>
+                    <p>Werken met architectuur is een gestructureerde manier van werken waarbij een vooraf gedefinieerde set van principes, richtlijnen, en standaarden wordt gevolgd om oplossingen te ontwerpen en implementeren. Dit zorgt voor consistentie, betrouwbaarheid en schaalbaarheid van de oplossingen en helpt organisaties om hun doelen efficiënter te bereiken en risico's te verminderen. Het vereist samenwerking tussen verschillende stakeholders en een gedeeld begrip van de architectuur.</p>
+                </div>
+            </div>
+
+            <div class="service-box fade-in-up">
+                <div class="service-icon-container">
+                    <i class="fas fa-cloud service-icon"></i>
+                </div>
+                <div class="service-content">
+                    <div class="service-title">
+                        <i class="fas fa-check-circle checkmark"></i>
+                        <h3>Cloud computing</h3>
+                    </div>
+                    <p>Cloud computing is een model voor het leveren van toegang tot gedeelde computerbronnen. Het biedt schaalbaarheid, flexibiliteit en kosteneffectiviteit. Gebruikers betalen alleen voor wat ze gebruiken en hebben gemakkelijk toegang tot de nieuwste technologieën en diensten, waardoor ze zich kunnen concentreren op hun kernactiviteiten en IT-kosten kunnen verminderen.</p>
+                </div>
+            </div>
+
+            <div class="service-box fade-in-up">
+                <div class="service-icon-container">
+                    <i class="fas fa-chart-line service-icon"></i>
+                </div>
+                <div class="service-content">
+                    <div class="service-title">
+                        <i class="fas fa-check-circle checkmark"></i>
+                        <h3>Data gedreven werken</h3>
+                    </div>
+                    <p>Data gedreven werken betekent het nemen van beslissingen op basis van feitelijke data in plaats van aannames. Het omvat het verzamelen en analyseren van gegevens om inzicht te krijgen in bedrijfsprestaties, klantgedrag en markttrends. Door geavanceerde technologieën te gebruiken, kunnen organisaties hun bedrijfsprocessen optimaliseren, kosten verlagen en de klanttevredenheid verhogen. Het doel is betere beslissingen te nemen en een concurrentievoordeel te behalen.</p>
+                </div>
+            </div>
+
+            <div class="service-box fade-in-up">
+                <div class="service-icon-container">
+                    <i class="fas fa-code-branch service-icon"></i>
+                </div>
+                <div class="service-content">
+                    <div class="service-title">
+                        <i class="fas fa-check-circle checkmark"></i>
+                        <h3>DevOps Implementatie</h3>
+                    </div>
+                    <p>DevOps verbindt de werelden van ontwikkeling en operations, waardoor snellere en betrouwbaardere softwarelevering mogelijk wordt. Wij helpen organisaties met het implementeren van DevOps-principes, het opzetten van CI/CD-pijplijnen, en het bevorderen van een cultuur van samenwerking en automatisering. Onze pragmatische aanpak zorgt voor een soepele transitie naar een DevOps-werkwijze die perfect aansluit bij de behoeften van uw organisatie.</p>
+                </div>
+            </div>
+
+            <div class="service-box fade-in-up">
+                <div class="service-icon-container">
+                    <i class="fas fa-search service-icon"></i>
+                </div>
+                <div class="service-content">
+                    <div class="service-title">
+                        <i class="fas fa-check-circle checkmark"></i>
+                        <h3>Maturity Quick Scans</h3>
+                    </div>
+                    <p>Onze pragmatische Maturity Quick Scans geven u snel inzicht in de huidige staat van uw DevOps-processen, architectuur, cloud-implementaties of data-gedreven strategieën. In plaats van weken of maanden te besteden aan uitgebreide assessments, bieden onze experts binnen enkele dagen concrete resultaten en actionable insights. Deze scans helpen u prioriteiten te stellen en een duidelijke roadmap te creëren voor uw digitale transformatie.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-copyright">
+                &copy; 2025 DevOpsWorks. All rights reserved.
+            </div>
+            <div class="social-links">
+                <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const navLinks = document.getElementById('nav-links');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedElements = document.querySelectorAll('.fade-in, .fade-in-up');
+            
+            animatedElements.forEach(element => {
+                element.style.opacity = '0';
+            });
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        
+                        if (entry.target.classList.contains('fade-in')) {
+                            entry.target.classList.add('animate__animated', 'animate__fadeIn');
+                        } else if (entry.target.classList.contains('fade-in-up')) {
+                            entry.target.classList.add('animate__animated', 'animate__fadeInUp');
+                        }
+                        
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            animatedElements.forEach(element => {
+                observer.observe(element);
+            });
+            
+            const serviceBoxes = document.querySelectorAll('.service-box');
+            for (let i = 1; i < serviceBoxes.length; i++) {
+                serviceBoxes[i].style.animationDelay = `${i * 0.2}s`;
+            }
+        });
+    </script>
+</body>
+</html>
